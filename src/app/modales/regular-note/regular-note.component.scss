@@ -1,0 +1,19 @@
+.my-modal{
+    height: 100%;
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+    background-color: #c9fcd7;
+    background-color: rgb(201, 252, 215);
+    // background-image: url('https://assets.website-files.com/5bfd1275cc56e15ce750b18e/5c289afb9a157571fe893a73_43.%20Harvest%20Gold.jpg');
+    // background-size: cover;
+}
+.my-font {
+    font-family: 'Open Sans', sans-serif;
+}
+.card__title{
+    font-size: 60px;
+    font-family: 'Sweet Hipster', sans-serif;
+    line-height: 20px;
+    color: #404c51;
+}

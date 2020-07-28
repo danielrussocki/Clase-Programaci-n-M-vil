@@ -1,0 +1,36 @@
+<ion-content class="background">
+  <div class="my-modal">
+    <ion-card style="width: 100%;">
+      <ion-card-header>
+        <!-- <ion-card-subtitle></ion-card-subtitle> -->
+        <ion-card-title class="ion-text-center ion-padding-vertical">
+          <h2 class="card__title">Crear nota</h2>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="transparent">
+          <ion-label position="floating">Título</ion-label>
+          <ion-input type="text" placeholder="Ej. Apuntes Biología"></ion-input>
+        </ion-item>
+        <ion-item color="transparent">
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-textarea placeholder="Ej. Biology sucks!"></ion-textarea>
+        </ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6">
+              <ion-button color="primary" fill="outline" class="my-font" (click)="onClick()" expand="block">
+                Cancelar
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button color="primary" class="my-font" (click)="onClick()" expand="block">
+                Añadir nota
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
