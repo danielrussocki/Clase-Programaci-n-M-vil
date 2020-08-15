@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController
+  ) {}
+
+  logout(){
+    this.authService.logout();
+    this.navCtrl.navigateRoot('/login');
+  }
 
 }

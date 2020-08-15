@@ -19,39 +19,41 @@
           </div>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="4">
-          <ion-item class="font-green-blue" color="transparent">
-            <ion-label position="floating">Nombre(s)</ion-label>
-            <ion-input type="text" placeholder="Ej. Bill"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col size="4">
-          <ion-item class="font-green-blue" color="transparent">
-            <ion-label position="floating">Apellido(s)</ion-label>
-            <ion-input type="text" placeholder="Ej. Gates"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="8">
-          <ion-item class="font-green-blue" color="transparent">
-            <ion-label position="floating">E-mail</ion-label>
-            <ion-input type="text" placeholder="Ej. billgates82@microsoft.us"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="8">
-          <ion-item class="font-green-blue" color="transparent">
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" placeholder="**********"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
+      <form [formGroup]="registerForm">
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="4">
+            <ion-item class="font-green-blue" color="transparent">
+              <ion-label position="floating">Nombre(s)</ion-label>
+              <ion-input formControlName="nombre" type="text" placeholder="Ej. Bill"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4">
+            <ion-item class="font-green-blue" color="transparent">
+              <ion-label position="floating">Apellido(s)</ion-label>
+              <ion-input formControlName="apellidos" type="text" placeholder="Ej. Gates"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="8">
+            <ion-item class="font-green-blue" color="transparent">
+              <ion-label position="floating">E-mail</ion-label>
+              <ion-input formControlName="correo" type="text" placeholder="Ej. billgates82@microsoft.us"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="8">
+            <ion-item class="font-green-blue" color="transparent">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input formControlName="password" type="password" placeholder="**********"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </form>
       <ion-row class="ion-justify-content-center">
         <ion-col size="6">
-          <ion-button class="my-font" (click)="onClick()" expand="block">
+          <ion-button class="my-font" (click)="registrar()" expand="block">
             Register
           </ion-button>
         </ion-col>

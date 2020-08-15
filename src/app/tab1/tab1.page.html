@@ -16,15 +16,28 @@
     </ion-toolbar>
   </ion-header> -->
 
-  <ion-card *ngFor="let i of items">
+  <ion-card *ngFor="let i of items[0]; let k = index">
     <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title</ion-card-title>
+      <!-- <ion-card-subtitle></ion-card-subtitle> -->
+      <ion-card-title>{{ i.titulo_nota }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
+      {{ i.descripcion_nota }}
     </ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="editarNota(i.id_nota)" expand="block" fill="clear" shape="round" color="secondary">
+            Editar
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="deleteNote(i.id_nota)" expand="block" fill="clear" shape="round" color="danger">
+            Eliminar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
   <ng-container *ngIf="items.length <= 0">

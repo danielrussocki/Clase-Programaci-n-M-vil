@@ -19,29 +19,31 @@
           </div>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="8">
-          <ion-item class="font-green-blue" color="transparent">
-            <ion-label position="floating">E-mail</ion-label>
-            <ion-input type="text" placeholder="Ej. billgates82@microsoft.us"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="8">
-          <ion-item class="font-green-blue" color="transparent">
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" placeholder="**********"></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size="6">
-          <ion-button class="my-font" (click)="onClick()" expand="block">
-            Login
-          </ion-button>
-        </ion-col>
-      </ion-row>
+      <form #form="ngForm" (ngSubmit)="login(form)">
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="8">
+            <ion-item class="font-green-blue" color="transparent">
+              <ion-label position="floating">E-mail</ion-label>
+              <ion-input ngModel name="email" type="text" placeholder="Ej. billgates82@microsoft.us"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="8">
+            <ion-item class="font-green-blue" color="transparent">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input ngModel name="password" type="password" placeholder="**********"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6">
+            <ion-button type="submit" class="my-font" expand="block">
+              Login
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
       <ion-row class="ion-justify-content-center">
         <ion-col class="ion-text-center">
           <ion-text><small class="font-green-blue"><a routerLink="/reset-password">¿Olvidaste tu contraseña?</a></small></ion-text>

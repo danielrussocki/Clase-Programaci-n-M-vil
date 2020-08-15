@@ -1,7 +1,8 @@
 {
   "name": "pmovil",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

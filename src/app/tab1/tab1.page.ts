@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, ModalController, IonRouterOutlet } from '@ionic/angular';
+import { ActionSheetController, ModalController, IonRouterOutlet, AlertController } from '@ionic/angular';
 import { RegularNoteComponent } from '../modales/regular-note/regular-note.component';
+import { NotasService } from '../services/notas.service';
+import { Notas } from '../models/Notas';
 
 @Component({
   selector: 'app-tab1',
@@ -10,13 +12,45 @@ import { RegularNoteComponent } from '../modales/regular-note/regular-note.compo
 export class Tab1Page {
 
   logo: string = "./assets/img/paper.png";
-  items = [];
+  items: Notas[] = [];
 
   constructor(
     public actionSheetController: ActionSheetController,
     public modalController: ModalController,
-    public routerOutlet: IonRouterOutlet
+    public routerOutlet: IonRouterOutlet,
+    public notasService: NotasService,
+    public alertController: AlertController
   ) {}
+
+  ionViewWillEnter(){
+    this.notasService.getAllNotes().subscribe(
+      user => {
+        this.items.push(user)
+      }
+    )
+  }
+
+  editarNota(id){
+    this.notasService.getDataSimpleNote(id).subscribe(
+      async (nota) => {
+        const modal = await this.modalController.create({
+          component: RegularNoteComponent,
+          swipeToClose: true,
+          presentingElement: this.routerOutlet.nativeEl,
+          componentProps: {
+            id_nota: nota.id_nota,
+            titulo_nota: nota.titulo_nota,
+            descripcion_nota: nota.descripcion_nota,
+            tipo_nota: nota.tipo_nota
+          }
+        });
+        modal.onDidDismiss().then(() => {
+          this.reloadData();
+        });
+        return await modal.present();
+      }
+    )
+  }
 
   async addNote(){
     const actionSheet = await this.actionSheetController.create({
@@ -51,7 +85,43 @@ export class Tab1Page {
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl
     });
+    modal.onDidDismiss().then(() => {
+      this.reloadData();
+    });
     return await modal.present();
+  }
+
+  async deleteNote(id: number){
+    const alert = await this.alertController.create({
+      header: 'Estás seguro?',
+      subHeader: 'No podrás recuperar los datos.',
+      message: '¿Deseas eliminar la nota?',
+      buttons: [{
+        text: 'Cancelar',
+        role: 'cancel'
+      }, {
+        text: 'Eliminar',
+        handler: () => {
+          this.notasService.deleteSimpleNote(id).subscribe(
+            res => {
+            console.log(res)
+            this.reloadData();
+          }, err => {
+            console.log(err)
+          })
+        }
+      }]
+    });
+    await alert.present();
+  }
+
+  reloadData(){
+    this.items = [];
+    this.notasService.getAllNotes().subscribe(
+      user => {
+        this.items.push(user)
+      }
+    )
   }
 
 }
